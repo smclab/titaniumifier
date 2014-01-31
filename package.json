@@ -4,7 +4,7 @@
   "description": "Get a Titanium SDK commonjs module out of a Node package!",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "node test"
   },
   "keywords": [
     "titanium",
@@ -14,5 +14,13 @@
     "analysis"
   ],
   "author": "Pier Paolo Ramon",
-  "license": "LGPL2.1"
+  "license": "LGPL2.1",
+  "dependencies": {
+    "semver": "~2.2.1",
+    "guid": "0.0.12"
+  },
+  "devDependencies": {
+    "colors": "~0.6.2",
+    "diff": "~1.0.8"
+  }
 }
