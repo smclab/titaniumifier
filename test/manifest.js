@@ -11,19 +11,41 @@ var readdir = fs.readdirSync;
 
 var fixturesDir = path.resolve(__dirname, 'fixtures');
 
-var cfgs = readdir(fixturesDir).map(function (filename) {
+var cfgs = readdir(fixturesDir).sort().map(function (filename) {
 	filename = path.resolve(fixturesDir, filename);
 	return {
-		filename: filename,
+		filename: path.relative(__dirname, filename),
+		fullFilename: filename,
 		package: require(filename)
 	};
 });
 
 cfgs.forEach(function (cfg) {
+	var invalidPackage = cfg.filename.indexOf('INVALID') >= 0;
+
+	function ok(msg) {
+		console.log(' ✔ '.green + cfg.filename.white);
+		if (msg) {
+			console.log(' · '.green + msg.blue);
+		}
+	}
+
+	function notOk() {
+		console.log(' ✘ '.red + cfg.filename.yellow);
+	}
+
+	var built = false;
+
 	try {
 		manifest.validatePackage(cfg.package);
 
-		var expectedFilename = cfg.filename
+		built = true;
+
+		if (invalidPackage) {
+			throw new Error("Building for " + cfg.filename + " should throw");
+		}
+
+		var expectedFilename = cfg.fullFilename
 			.replace('fixtures', 'expected')
 			.replace('package', 'manifest')
 			.replace('.json', '');
@@ -42,7 +64,7 @@ cfgs.forEach(function (cfg) {
 
 			err.data.push("\n");
 			err.data.push(cfg.filename.green + "\n");
-			err.data.push(expectedFilename.red + "\n");
+			err.data.push(path.relative(__dirname, expectedFilename).red + "\n");
 			err.data.push("\n");
 
 			diff.diffLines(expected, result).forEach(function(part){
@@ -67,16 +89,22 @@ cfgs.forEach(function (cfg) {
 			throw err;
 		}
 
-		console.log(' ✔ '.green + cfg.filename.blue);
+		ok();
 	}
-	catch (e) {
-		console.log(' ✘ '.red + cfg.filename.yellow);
-
-		if (err.data) {
-			process.stderr.write(err.data.join(''));
+	catch (err) {
+		if (invalidPackage && !built) {
+			ok(err.message ? ('Correctly throws: ' + err.message) : 'Correctly throws error');
+			return;
 		}
 		else {
-			throw err;
+			notOk();
+
+			if (err.data) {
+				process.stderr.write(err.data.join(''));
+			}
+			else {
+				throw err;
+			}
 		}
 	}
 });
