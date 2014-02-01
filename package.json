@@ -2,6 +2,12 @@
   "name": "titaniumifier",
   "version": "0.1.0",
   "description": "Get a Titanium SDK commonjs module out of a Node package!",
+  "author": {
+    "name": "Pier Paolo Ramon",
+    "email": "pierpaolo.ramon@smc.it",
+    "url": "https://github.com/yuchi"
+  },
+  "license": "LGPL2.1",
   "main": "index.js",
   "scripts": {
     "test": "node test"
@@ -13,8 +19,6 @@
     "static",
     "analysis"
   ],
-  "author": "Pier Paolo Ramon",
-  "license": "LGPL2.1",
   "dependencies": {
     "semver": "~2.2.1",
     "guid": "0.0.12"
