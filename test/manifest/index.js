@@ -1,5 +1,5 @@
 
-var manifest = require('../manifest');
+var manifest = require('../../manifest');
 
 require('colors');
 var diff = require('diff');
