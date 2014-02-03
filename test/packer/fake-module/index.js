@@ -25,4 +25,3 @@ test("Some global tests", function () {
 
   (typeof globalVar).should.not.equal('undefined');
 });
-
