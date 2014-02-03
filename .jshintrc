@@ -1,0 +1,18 @@
+{
+  "node": true,
+
+  "curly": false,
+  "indent": 2,
+  "trailing": true,
+
+  "boss": true,
+  "latedef": false,
+  "eqeqeq": true,
+  "eqnull": true,
+  "expr": true,
+  "undef": true,
+
+  "globals": {
+    "TODO": true
+  }
+}
