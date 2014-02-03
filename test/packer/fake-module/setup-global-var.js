@@ -1,0 +1,3 @@
+
+global.globalVar = 42;
+

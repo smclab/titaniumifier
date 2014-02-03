@@ -1,3 +1,3 @@
 
 require('./manifest');
-
+require('./packer');

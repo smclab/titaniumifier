@@ -1,0 +1,12 @@
+{
+  "name": "fake-module",
+  "private": true,
+  "version": "1.2.3",
+  "description": "Hallo",
+  "main": "index.js",
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "should": "~3.1.2"
+  }
+}
