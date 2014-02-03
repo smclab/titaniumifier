@@ -8,7 +8,15 @@
     "url": "https://github.com/yuchi"
   },
   "license": "LGPL2.1",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/smclab/titaniumifier.git"
+  },
   "main": "index.js",
+  "directories": {
+    "test": "./test",
+    "lib": "./lib"
+  },
   "scripts": {
     "test": "node test",
     "prepublish": "node lib/scripts/prepublish.js"
