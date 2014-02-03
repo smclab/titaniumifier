@@ -1,4 +1,4 @@
-Titaniumifier
+Titaniumifier [![Build Status](https://travis-ci.org/smclab/titaniumifier.png)](https://travis-ci.org/smclab/titaniumifier)
 =============
 
 Build your **Titanium CommonJS Modules** as they should be: as **Node.js modules**.
