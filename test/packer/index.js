@@ -14,8 +14,11 @@ var Titanium = {
 	}
 };
 
-packer.pack(path.resolve(__dirname, 'fake-module'), {
-	//
+fs.mkdirp(path.resolve(__dirname, 'build'))
+.then(function () {
+	return packer.pack(path.resolve(__dirname, 'fake-module'), {
+		//
+	});
 })
 .then(function (src) {
 	return fs.writeFile(path.resolve(__dirname, 'build', 'packed.js'), src).yield(src);
