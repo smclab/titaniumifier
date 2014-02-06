@@ -25,3 +25,8 @@ test("Some global tests", function () {
 
   (typeof globalVar).should.not.equal('undefined');
 });
+
+test("Console tests", function () {
+  console.dir({ answer: 42 });
+});
+
