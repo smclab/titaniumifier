@@ -33,6 +33,6 @@ test("Some global tests", function () {
 });
 
 test("Console tests", function () {
+  console.log("You should see this message and an inspection...");
   console.dir({ answer: 42 });
 });
-
