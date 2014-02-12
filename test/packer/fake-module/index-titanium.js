@@ -36,3 +36,14 @@ test("Console tests", function () {
   console.log("You should see this message and an inspection...");
   console.dir({ answer: 42 });
 });
+
+test("Moment and similar", function () {
+  var moment = require('moment');
+  moment.lang(require('moment/lang/it'));
+
+  var dayOfTheEpoch = moment(0).format('dddd');
+
+  console.log("In italy the day of the epoch is called %s", dayOfTheEpoch);
+
+  dayOfTheEpoch.toLowerCase().should.be.equal('giovedì');
+});

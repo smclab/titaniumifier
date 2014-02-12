@@ -15,5 +15,8 @@
     "useBrowser": true,
     "index.js": "./index-titanium.js",
     "reduce": "reduce-component"
+  },
+  "devDependencies": {
+    "moment": "~2.5.1"
   }
 }
