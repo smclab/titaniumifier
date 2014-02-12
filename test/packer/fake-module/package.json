@@ -8,6 +8,12 @@
   "author": "",
   "license": "BSD-2-Clause",
   "dependencies": {
+    "reduce-component": "~1.0.1",
     "should": "~3.1.2"
+  },
+  "titanium": {
+    "useBrowser": true,
+    "index.js": "./index-titanium.js",
+    "reduce": "reduce-component"
   }
 }
