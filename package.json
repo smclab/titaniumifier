@@ -35,6 +35,7 @@
     "mkdirp": "~0.3.5",
     "native-buffer-browserify": "~2.0.17",
     "semver": "~2.2.1",
+    "titanium-resolve": "~0.1.0",
     "when": "~2.7.1"
   },
   "devDependencies": {
