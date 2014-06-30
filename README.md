@@ -1,11 +1,11 @@
 Titaniumifier [![Build Status](https://travis-ci.org/smclab/titaniumifier.png)](https://travis-ci.org/smclab/titaniumifier)
 =============
 
-Build your **Titanium CommonJS Modules** as they should be: following **Node.js modules** conventions.
+Build your **Titanium CommonJS Modules** as they should be: as **CommonJS packages**, allowing more than one file.
 
 Developed around [substack][ss]’s [browserify][b], *titaniumifier* is a tool that can be used to build a zip file following Titanium SDK conventions with a `package.json` as its starting point.
 
-At the moment it doesn’t provide a command line tool, and must be used with a building tool. The [Grunt plugin][gt] is already here, and the Gulp one is on the way. Feel free to contribute one or ask for it.
+At the moment it doesn’t provide a command line tool, and must be used with a building tool. The [Grunt plugin][gt] is already here, and the Gulp one is on the way. ***Feel free to contribute one or ask for it.***
 
 [ss]: https://github.com/substack
 [b]: https://github.com/substack/node-browserify
