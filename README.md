@@ -37,6 +37,43 @@ Until we solve those challenges, have a look at [`tipi`][tp] which looks very pr
 [tp]: https://github.com/dawicorti/tipi
 
 
+What is it **not** for?
+-----------------------
+
+With `titaniumifier`, you will not be able to
+
+- use arbitrary Node.js packages in your app;
+- use or depend on ‘complex’ e ‘deeply’ node-ish packages like `socket.io`;
+- do something not already offered by the Titanium SDK APIs.
+
+### …but…
+
+- we worked (and still working) on providing a solution to use **every** Node.js package directly in your app;
+- we want to have shims that made the differences between Node.js’ environment and Titanium’s as small as possible;
+- we want to integrate [gitTio][gt] to support native modules installation based on explicit dependency or automatic inference of dependency (for example a module for fully async filesystem operations.)
+
+[gt]: http://gitt.io/cli
+
+
+TODO
+----
+
+- Document and explore transpilation (this is a research mostly related to source maps/debug features;)
+- Make titaniumified repositories crawlable from `gitTio`;
+- Shim the following globals
+  - `Buffer` with `Titanium.Buffer`
+  - `TypedArrays`,
+  - `set/clearImmediate`,
+  - `process.nextTick`;
+- Shim the following built-ins
+  - `fs`,
+  - `http`,
+  - `net` (with `Titanium.Network.TCPSocket`),
+  - `stream` (and make `fs` work with it.)
+
+The shimming process could be a community effort into the development of `ti-fs`, `ti-net` etc. Contact us if you’re interested in working on it. In case don’t limit yourself to pure JS, give native development a chance.
+
+
 Compatibility
 -------------
 
