@@ -37,6 +37,28 @@ Until we solve those challenges, have a look at [`tipi`][tp] which looks very pr
 [tp]: https://github.com/dawicorti/tipi
 
 
+Compatibility
+-------------
+
+### Titanium SDK
+
+The reference packages have been tested extensively from Titanium SDK 3.2 onward. There should be no reson for titaniumified packages to not work on older SDK versions.
+
+Issues with Titanium SDK 3.x will be considered critical. With older versions we’ll try to do our best.
+
+Because it does not mangle your `Resources` folder it is compatible with Alloy and TiShadow (and similars.) Please report any issue you have.
+
+### Node.js (in packages)
+
+Currently Node.js 0.10 environment is shimmed in the packaging process. Once Node.js 0.12 is out there will be some interesting challenge to cope with (generators, WeakMap etc.)
+
+Once that happens we’ll shim whatever is necessary.
+
+### Node.js (build-time)
+
+This code is tested against Node.js 0.10 and 0.11.
+
+
 Please steal this code (aka *examples*)
 ---------------------------------------
 
