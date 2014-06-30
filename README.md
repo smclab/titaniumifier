@@ -12,6 +12,24 @@ At the moment it doesn’t provide a command line tool, and must be used with a 
 [gt]: https://github.com/smclab/grunt-titaniumifier
 
 
+What is it for?
+---------------
+
+You’ll want to give `titaniumifier` a try if you want to write
+
+- a Titanium CommonJS distributable module
+  - more complex than a single file,
+  - some `npm` dependencies;
+- a package that works on both Node.js and Titanium SDK;
+- a wrapper for an existing package existing on `npm`.
+
+Once you’re done writing your package you’ll be able to publish it on `npm` for users to
+- use it with Node.js;
+- unclude it as a dependency of a *titaniumified* package.
+
+This is **not** for using arbitrary `npm` packages with Titanium. The way we build a module out of a package **could** be used to build a complete app too (and we tried, oh if we tried) but it poses few challenges. In particular debugging is very cumbersome.
+
+
 Credits
 -------
 
