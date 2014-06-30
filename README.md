@@ -27,7 +27,46 @@ Once you’re done writing your package you’ll be able to publish it on `npm` 
 - use it with Node.js;
 - unclude it as a dependency of a *titaniumified* package.
 
-This is **not** for using arbitrary `npm` packages with Titanium. The way we build a module out of a package **could** be used to build a complete app too (and we tried, oh if we tried) but it poses few challenges. In particular debugging is very cumbersome.
+This is **not** for using arbitrary `npm` packages with Titanium. The way we build a module out of a package **could** be used to build a complete app too (and we tried, oh if we tried) but it poses few challenges. In particular debugging is very cumbersome. On the other side we could get transparent transpiling for free (you know, coffee-script, traceur, es6 etc.)
+
+Such a project was codenamed `npmifier` but not released. If interested please let us know in the [issues][i].
+
+[i]: https://github.com/smclab/titaniumifier/issues?state=open
+
+
+Please steal this code (aka *examples*)
+---------------------------------------
+
+At the moment, you’ll use `titaniumifier` through its `grunt` plugin, [`grunt-titaniumifier`][grtt].
+
+There are 2 reference packages at the moment:
+
+- [`ti-superagent`][sa] Which wraps @visionmedia’s `superagent`
+- [`liferay-connector`][lc] Which is a connector for our Portal Framework of choice, Liferay
+
+[grtt]: https://github.com/smclab/grunt-titaniumifier
+[sa]: https://github.com/smclab/ti-superagent
+[lc]: https://github.com/smclab/liferay-connector
+
+
+Contributing and whishlist
+--------------------------
+
+If you feel like helping, we’ll accept pull requests with great joy.
+
+Here are a few ideas into helping this project:
+
+- A stand-alone CLI so no need for Grunt, Gulp etc
+- A Gulp plugin (here’s a [link to get you started][gp])
+- Even more unit-tests
+
+[gp]: https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/README.md
+
+
+We love feedback
+----------------
+
+**Please**, don’t be afraid in opening new issues, even just for asking some help.
 
 
 Credits
