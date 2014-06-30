@@ -7,9 +7,12 @@ Developed around [substack][ss]’s [browserify][b], *titaniumifier* is a tool t
 
 At the moment it doesn’t provide a command line tool, and must be used with a building tool. The [Grunt plugin][gt] is already here, and the Gulp one is on the way. ***Feel free to contribute one or ask for it.***
 
+### [Use it with Grunt][gt], [Example package][ti-superagent]
+
 [ss]: https://github.com/substack
 [b]: https://github.com/substack/node-browserify
 [gt]: https://github.com/smclab/grunt-titaniumifier
+[ti-superagent]: https://github.com/smclab/ti-superagent
 
 
 What is it for?
@@ -104,11 +107,11 @@ At the moment, you’ll use `titaniumifier` through its `grunt` plugin, [`grunt-
 
 There are 2 reference packages at the moment:
 
-- [`ti-superagent`][sa] Which wraps @visionmedia’s `superagent`
+- [`ti-superagent`][tisa] Which wraps @visionmedia’s `superagent`
 - [`liferay-connector`][lc] Which is a connector for our Portal Framework of choice, Liferay
 
 [grtt]: https://github.com/smclab/grunt-titaniumifier
-[sa]: https://github.com/smclab/ti-superagent
+[tisa]: https://github.com/smclab/ti-superagent
 [lc]: https://github.com/smclab/liferay-connector
 
 
