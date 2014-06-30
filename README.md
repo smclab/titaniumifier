@@ -54,9 +54,9 @@ Contributing and whishlist
 
 If you feel like helping, we’ll accept pull requests with great joy.
 
-Here are a few ideas into helping this project:
+Here are a few ideas to help this project:
 
-- A stand-alone CLI so no need for Grunt, Gulp etc
+- A stand-alone CLI so there’s no need for Grunt, Gulp etc
 - A Gulp plugin (here’s a [link to get you started][gp])
 - Even more unit-tests
 
