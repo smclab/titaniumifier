@@ -31,7 +31,10 @@ This is **not** for using arbitrary `npm` packages with Titanium. The way we bui
 
 Such a project was codenamed `npmifier` but not released. If interested please let us know in the [issues][i].
 
+Until we solve those challenges, have a look at [`tipi`][tp] which looks very promising. We are going to contribute to them few changes that will enable full compatibility with titaniumified packages.
+
 [i]: https://github.com/smclab/titaniumifier/issues?state=open
+[tp]: https://github.com/dawicorti/tipi
 
 
 Please steal this code (aka *examples*)
