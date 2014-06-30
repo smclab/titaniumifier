@@ -58,6 +58,7 @@ With `titaniumifier`, you will not be able to
 TODO
 ----
 
+- Make the built module easily debuggable from Titanium Studio (this is pretty big;)
 - Document and explore transpilation (this is a research mostly related to source maps/debug features;)
 - Make titaniumified repositories crawlable from `gitTio`;
 - Shim the following globals
