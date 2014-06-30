@@ -50,9 +50,9 @@ With `titaniumifier`, you will not be able to
 
 - we worked (and still working) on providing a solution to use **every** Node.js package directly in your app;
 - we want to have shims that made the differences between Node.js’ environment and Titanium’s as small as possible;
-- we want to integrate [gitTio][gt] to support native modules installation based on explicit dependency or automatic inference of dependency (for example a module for fully async filesystem operations.)
+- we want to integrate [gitTio][gittio] to support native modules installation based on explicit dependency or automatic inference of dependency (for example a module for fully async filesystem operations.)
 
-[gt]: http://gitt.io/cli
+[gittio]: http://gitt.io/cli
 
 
 TODO
