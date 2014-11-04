@@ -28,7 +28,7 @@ You’ll want to give `titaniumifier` a try if you want to write
 
 Once you’re done writing your package you’ll be able to publish it on `npm` for users to
 - use it with Node.js;
-- unclude it as a dependency of a *titaniumified* package.
+- include it as a dependency of a *titaniumified* package.
 
 This is **not** for using arbitrary `npm` packages with Titanium. The way we build a module out of a package **could** be used to build a complete app too (and we tried, oh if we tried) but it poses few challenges. In particular debugging is very cumbersome. On the other side we could get transparent transpiling for free (you know, coffee-script, traceur, es6 etc.)
 
