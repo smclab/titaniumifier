@@ -1,0 +1,20 @@
+{
+  "name": "fake-module",
+  "titaniumManifest": {
+    "guid": "b91da39e-e3e3-f75a-ff4a-cc2d29b31bff",
+    "moduleid": "fake-name"
+  },
+  "private": true,
+  "version": "1.2.3",
+  "description": "Hallo",
+  "main": "index.js",
+  "author": "",
+  "license": "BSD-2-Clause",
+  "dependencies": {
+    "should": "~3.1.2"
+  },
+  "titanium": {
+    "useBrowser": true,
+    "index.js": "./index-titanium.js"
+  }
+}

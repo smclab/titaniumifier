@@ -19,25 +19,35 @@ var Titanium = {
 };
 
 var BUILD_DIR = path.resolve(__dirname, 'build');
-var ENTRY = path.resolve(__dirname, 'fake-module');
+var ENTRY_1 = path.resolve(__dirname, 'fake-module-1');
+var ENTRY_2 = path.resolve(__dirname, 'fake-module-2');
 
 sequence([
+
   clean,
-  testPack(ENTRY, 'packed.js'),
-  testBuild(ENTRY, {
+
+  testPack(ENTRY_1, 'packed.1.js'),
+
+  testBuild(ENTRY_1, {
     //
   }),
-  testBuild(ENTRY, {
+
+  testBuild(ENTRY_1, {
     noDependencies: true
   }),
-  testBuild(ENTRY, {
-    as: 'fake-name'
+
+  testPack(ENTRY_2, 'packed.2.js'),
+
+  testBuild(ENTRY_2, {
+    //
   }),
-  testBuild(ENTRY, {
-    as: 'fake-name',
+
+  testBuild(ENTRY_2, {
     noDependencies: true
   }),
-  testZips,
+
+  testZips
+
 ]).done(function () {
   console.log('');
   console.log(' ✔ '.green + "Packer tests run smootly");
