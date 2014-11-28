@@ -1,0 +1,12 @@
+{
+  "name": "example",
+  "guid": "wrong",
+  "titaniumManifest": {
+    "guid": "005f7d23-04d8-4d49-8c16-66694408e4b9"
+  },
+  "version": "1.2.3",
+  "description": "Lorem ipsum (dolor) <sit> amet",
+  "main": "index.js",
+  "author": "John Appleseed",
+  "license": "BSD-2-Clause"
+}
