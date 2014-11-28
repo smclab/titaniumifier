@@ -23,15 +23,17 @@ var ENTRY = path.resolve(__dirname, 'fake-module');
 
 sequence([
   clean,
-  testPack,
-  testBuild.bind(null, {}),
-  testBuild.bind(null, {
+  testPack(ENTRY, 'packed.js'),
+  testBuild(ENTRY, {
+    //
+  }),
+  testBuild(ENTRY, {
     noDependencies: true
   }),
-  testBuild.bind(null, {
+  testBuild(ENTRY, {
     as: 'fake-name'
   }),
-  testBuild.bind(null, {
+  testBuild(ENTRY, {
     as: 'fake-name',
     noDependencies: true
   }),
@@ -45,36 +47,41 @@ function clean() {
   return fs.rimraf(BUILD_DIR);
 }
 
-function testPack() {
-  return fs.mkdirp(BUILD_DIR)
-  .then(function () {
-    return packer.pack(ENTRY, {
-      //
+function testPack(entry, expected) {
+  expected = path.resolve(BUILD_DIR, expected);
+  return function () {
+    return fs.mkdirp(BUILD_DIR)
+    .then(function () {
+      return packer.pack(entry, {
+        //
+      });
+    })
+    .then(function (src) {
+      return fs.writeFile(expected, src).yield(src);
+    })
+    .then(function (src) {
+      var sandbox = {
+        Titanium: Titanium,
+        Ti: Titanium,
+        module: {
+          exports: {}
+        }
+      };
+
+      sandbox.exports = sandbox.module.exports;
+
+      vm.runInNewContext(src, sandbox, expected);
     });
-  })
-  .then(function (src) {
-    return fs.writeFile(path.resolve(BUILD_DIR, 'packed.js'), src).yield(src);
-  })
-  .then(function (src) {
-    var sandbox = {
-      Titanium: Titanium,
-      Ti: Titanium,
-      module: {
-        exports: {}
-      }
-    };
-
-    sandbox.exports = sandbox.module.exports;
-
-    vm.runInNewContext(src, sandbox, require.resolve('./fake-module'));
-  });
+  };
 }
 
-function testBuild(cfg) {
-  cfg.entry = ENTRY;
-  return packer.build(cfg).then(function (zip) {
-    return zip.writeModule(BUILD_DIR);
-  });
+function testBuild(entry, cfg) {
+  return function () {
+    cfg.entry = entry;
+    return packer.build(cfg).then(function (zip) {
+      return zip.writeModule(BUILD_DIR);
+    });
+  };
 }
 
 function testZips() {
