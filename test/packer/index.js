@@ -96,15 +96,19 @@ function testBuild(entry, cfg) {
 
 function testZips() {
   return fs.readdir(BUILD_DIR).then(function (files) {
-    if (files.indexOf("fake-module-commonjs-1.2.3-bare.zip") < 0) {
+
+    if (files.indexOf("fake-module-1-commonjs-1.2.3-bare.zip") < 0) {
       throw new Error("No bare zip built");
     }
-    if (files.indexOf("fake-module-commonjs-1.2.3.zip") < 0) {
+
+    if (files.indexOf("fake-module-1-commonjs-1.2.3.zip") < 0) {
       throw new Error("No simple zip built");
     }
+
     if (files.indexOf("fake-name-commonjs-1.2.3-bare.zip") < 0) {
       throw new Error("No bare zip (with fake name) built");
     }
+
     if (files.indexOf("fake-name-commonjs-1.2.3.zip") < 0) {
       throw new Error("No simple zip (with fake name) built");
     }
