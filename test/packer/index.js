@@ -22,6 +22,7 @@ var BUILD_DIR = path.resolve(__dirname, 'build');
 var ENTRY = path.resolve(__dirname, 'fake-module');
 
 sequence([
+  clean,
   testPack,
   testBuild.bind(null, {}),
   testBuild.bind(null, {
@@ -39,6 +40,10 @@ sequence([
   console.log('');
   console.log(' ✔ '.green + "Packer tests run smootly");
 });
+
+function clean() {
+  return fs.rimraf(BUILD_DIR);
+}
 
 function testPack() {
   return fs.mkdirp(BUILD_DIR)
