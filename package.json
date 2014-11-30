@@ -36,7 +36,11 @@
     "native-buffer-browserify": "~2.0.17",
     "rimraf": "^2.2.8",
     "semver": "~2.2.1",
+    "ti-console": "^0.1.2",
+    "ti-fs": "0.0.0",
+    "titanium-os": "^0.1.1",
     "titanium-resolve": "~0.2.0",
+    "vm-titanium": "0.0.1",
     "when": "~2.7.1"
   },
   "devDependencies": {
