@@ -9,6 +9,9 @@ var packer = require('../../packer');
 var fs = require('../../lib/util/fs');
 
 var Titanium = {
+  Platform: {
+    architecture: 'fake42'
+  },
   API: {
     log: console.log.bind(console),
     info: console.log.bind(console),

@@ -14,6 +14,10 @@ function test(msg, fn) {
 
 var answer = 42;
 
+test("Testing 'os'", function () {
+  require('os').arch().should.be.equal('fake42');
+});
+
 test("Smoke test", function () {
   (answer).should.be.equal(answer);
 });
