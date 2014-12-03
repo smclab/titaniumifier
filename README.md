@@ -1,5 +1,6 @@
-Titaniumifier [![Build Status](https://travis-ci.org/smclab/titaniumifier.png)](https://travis-ci.org/smclab/titaniumifier)
+Titaniumifier
 =============
+[![Build Status](https://img.shields.io/travis/smclab/titaniumifier.svg?style=flat)](https://travis-ci.org/smclab/titaniumifier) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/smclab/titaniumifier?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Build your **Titanium CommonJS Modules** as they should be: as **CommonJS packages**, allowing more than one file.
 
