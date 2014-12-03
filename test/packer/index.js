@@ -1,6 +1,5 @@
 
 require('should');
-require('colors');
 
 var vm = require('vm');
 var when = require('when');
@@ -8,6 +7,8 @@ var sequence = require('when/sequence');
 var path = require('path');
 var packer = require('../../packer');
 var fs = require('../../lib/util/fs');
+
+var buildDir = path.resolve(__dirname, 'build');
 
 var Titanium = {
   Platform: {
@@ -22,7 +23,64 @@ var Titanium = {
   }
 };
 
-var BUILD_DIR = path.resolve(__dirname, 'build');
+before(function () {
+  return fs.rimraf(buildDir).then(function () {
+    fs.mkdirp(buildDir);
+  });
+});
+
+describe("Building", function () {
+
+  it("should work", function () {
+    return packer.build({
+      entry: path.resolve(__dirname, 'module-1')
+    })
+    .then(function (zip) {
+      return zip.writeModule(buildDir);
+    });
+  });
+
+  it("should create the right zip", function () {
+    assertIsFile(path.resolve(buildDir, 'module-1-commonjs-0.1.2.zip'));
+  });
+
+});
+
+describe("Resolution", function () {
+  var entry = path.resolve(__dirname, 'module-1');
+  var packed = path.resolve(buildDir, 'module-1.js');
+
+  it("should work", function () {
+    return packer.pack(entry, {
+      // no config
+    })
+    .then(function (src) {
+      return fs.writeFile(packed, src);
+    });
+  });
+
+  it("should have resolved correctly the shadowed main", function () {
+    return fs.readFile(packed).then(function (src) {
+      vm.runInNewContext(src, {
+        Titanium: Titanium,
+        Ti: Titanium,
+        console: console,
+        describe: describe,
+        it: it
+      }, packed);
+    });
+  });
+
+});
+
+function assertIsFile(file) {
+  return fs.isFile(file).then(function (isFile) {
+    isFile.should.be.true;
+  });
+}
+
+
+/*
 var ENTRY_1 = path.resolve(__dirname, 'fake-module-1');
 var ENTRY_2 = path.resolve(__dirname, 'fake-module-2');
 
@@ -129,3 +187,4 @@ function testBuild(entry, cfg) {
     return zip.writeModule(BUILD_DIR);
   });
 }
+*/

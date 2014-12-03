@@ -1,0 +1,12 @@
+{
+  "name": "ti-module-1",
+  "guid": "0236f974-f7bf-f2dc-ca26-175cf5a14d14",
+  "version": "0.1.2",
+  "titaniumManifest": {
+    "moduleid": "module-1"
+  },
+  "main": "index.js",
+  "titanium": {
+    "./index.js": "./titanium.js"
+  }
+}
