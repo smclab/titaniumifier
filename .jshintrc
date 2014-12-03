@@ -13,6 +13,9 @@
   "undef": true,
 
   "globals": {
-    "TODO": true
+    "TODO": true,
+    "describe": true,
+    "it": true,
+    "before": true
   }
 }

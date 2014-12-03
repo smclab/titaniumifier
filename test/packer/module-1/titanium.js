@@ -5,4 +5,4 @@ describe("Shadowing", function (){
   it("should work on `main`", function () {
     // works
   });
-})
+});
