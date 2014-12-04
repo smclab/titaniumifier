@@ -1,4 +1,5 @@
 lib/util/_prelude.js
-test/packer/build
 node_modules
+test/packer/build
+tmp
 !test/packer/module-1/node_modules
