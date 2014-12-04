@@ -1,3 +1,0 @@
-
-require('./manifest');
-require('./packer');
