@@ -1,5 +1,6 @@
 
 require('should');
+require('longjohn');
 
 var vm = require('vm');
 var when = require('when');
