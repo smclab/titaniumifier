@@ -28,5 +28,7 @@ describe("Global context", function () {
     require('insert-global');
 
     assert.equal(typeof globalVar, 'number');
+    assert.equal(typeof global.globalVar, 'number');
+    assert.equal(global.globalVar, 42);
   });
 });
