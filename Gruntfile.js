@@ -10,7 +10,7 @@ module.exports = function (grunt) {
 			options: {
 				jshintrc: true
 			},
-			"all": [ 'lib/**/*.js', 'test/**/*.js' ]
+			all: [ 'lib/**/*.js', 'test/**/*.js' ]
 		},
 
 		mochaTest: {
