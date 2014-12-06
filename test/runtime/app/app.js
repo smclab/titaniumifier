@@ -8,9 +8,26 @@ describe('Smoke tests', function () {
   });
 });
 
-var runner = mocha.run(function() {
-  // print the stats from the runner after the test completes
-  if (runner.stats.failures > 0) {
+describe('Require', function () {
+  it('should work', function () {
+    require('module-a');
+  });
+});
+
+describe('Module calling', function () {
+  it('should work', function () {
+    var DeepThink = require('module-a');
+
+    Ti.API.error(DeepThink);
+
+    var deepthink = new DeepThink();
+
+    deepthink.answer.is(deepthink.answer()).should.be.true;
+  });
+});
+
+mocha.run(function (failures) {
+  if (failures > 0) {
     Ti.API.info('[TESTS WITH FAILURES]');
   }
   else {

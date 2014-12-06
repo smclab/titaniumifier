@@ -61,14 +61,20 @@ describe("Resolution", function () {
   });
 
   it("should have resolved correctly the shadowed main", function () {
+    var _module = { exports: {} };
+
     return fs.readFile(packed).then(function (src) {
       vm.runInNewContext(src, {
         Titanium: Titanium,
         Ti: Titanium,
         console: console,
         describe: describe,
-        it: it
+        it: it,
+        exports: _module.exports,
+        module: _module
       }, packed);
+
+      _module.exports.should.eql(42);
     });
   });
 

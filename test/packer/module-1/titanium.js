@@ -32,3 +32,7 @@ describe("Global context", function () {
     assert.equal(global.globalVar, 42);
   });
 });
+
+// Exporting something
+
+module.exports = 42;
