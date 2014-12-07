@@ -1,0 +1,11 @@
+{
+  "name": "ti-module-c",
+  "version": "1.2.3",
+  "titaniumManifest": {
+    "guid": "b1c35419-64d2-84bb-58e7-04f00ad1a683",
+    "name": "Module B",
+    "moduleid": "module-c"
+  },
+  "dependencies": {},
+  "nativeDependencies": {}
+}

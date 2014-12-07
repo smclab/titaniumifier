@@ -1,0 +1,15 @@
+{
+  "name": "ti-module-a",
+  "version": "1.2.3",
+  "titaniumManifest": {
+    "guid": "bf0d14f6-3ccd-1462-f818-18a5cfef4796",
+    "name": "Module A",
+    "moduleid": "module-a"
+  },
+  "dependencies": {
+    "module-a": "*"
+  },
+  "nativeDependencies": {
+    "i.dont.exist": "*"
+  }
+}

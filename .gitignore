@@ -1,5 +1,6 @@
 lib/util/_prelude.js
 node_modules
 test/packer/build
+test/runtime/build
 tmp
 !test/**/node_modules

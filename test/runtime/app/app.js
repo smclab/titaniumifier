@@ -1,6 +1,7 @@
 
 require('ti-mocha');
-require('should');
+
+var should = require('should');
 
 describe('Smoke tests', function () {
   it('should work', function () {
@@ -15,14 +16,30 @@ describe('Require', function () {
 });
 
 describe('Module calling', function () {
+  var DeepThink;
+  var deepthink
+
   it('should work', function () {
-    var DeepThink = require('module-a');
+    DeepThink = require('module-a');
 
-    Ti.API.error(DeepThink);
+    deepthink = new DeepThink();
 
-    var deepthink = new DeepThink();
+    deepthink.answer().should.be.eql(42);
 
     deepthink.answer.is(deepthink.answer()).should.be.true;
+  });
+
+  it('should throw on missing native deps', function () {
+    (function () {
+      deepthink.magratea();
+    }).should.throw();
+  });
+
+  it('should work inside module, between modules', function () {
+    deepthink.identity().call(null, 42).should.eql(42);
+    require('module-c').call(null, 42).should.eql(42);
+
+    should(deepthink.identity() === require('module-c')).be.true;
   });
 });
 
@@ -33,6 +50,4 @@ mocha.run(function (failures) {
   else {
     Ti.API.info('[TESTS ALL OK]');
   }
-
-  Ti.API.info('[TESTS COMPLETE]');
 });
