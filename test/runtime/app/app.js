@@ -45,9 +45,9 @@ describe('Module calling', function () {
 
 mocha.run(function (failures) {
   if (failures > 0) {
-    Ti.API.info('[TESTS WITH FAILURES]');
+    Ti.API.error('[TESTS WITH FAILURES]');
   }
   else {
-    Ti.API.info('[TESTS ALL OK]');
+    Ti.API.error('[TESTS ALL OK]');
   }
 });
