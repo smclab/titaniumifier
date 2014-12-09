@@ -33,6 +33,20 @@ describe("Global context", function () {
   });
 });
 
+describe("Globals", function () {
+  it('process', function () {
+    assert.equal(typeof process, 'object');
+  });
+
+  it('__dirname', function () {
+    assert.equal(typeof __dirname, 'string');
+  });
+
+  it('__filename', function () {
+    assert.equal(typeof __filename, 'string');
+  });
+});
+
 // Exporting something
 
 module.exports = 42;
