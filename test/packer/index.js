@@ -49,21 +49,31 @@ describe("Building", function () {
 
 describe("Bundling", function () {
   var entry = path.resolve(__dirname, 'module-1');
-  var packed = path.resolve(buildDir, 'module-1.js');
+  var packedFile = path.resolve(buildDir, 'module-1.js');
+
+  var promise = packer.pack(entry, {
+    // no config
+  });
 
   it("should work", function () {
-    return packer.pack(entry, {
-      // no config
-    })
-    .then(function (src) {
-      return fs.writeFile(packed, src);
+    return promise.then(function (packed) {
+      return fs.writeFile(packedFile, packed.source);
+    });
+  });
+
+  it("should have merged native deps", function () {
+    return promise.then(function (packed) {
+      packed.should.have.a.property('nativeDependencies').eql({
+        'a.native.dep': '*',
+        'another.native.dep': '*'
+      });
     });
   });
 
   it("should have resolved correctly the shadowed main", function () {
     var _module = { exports: {} };
 
-    return fs.readFile(packed).then(function (src) {
+    return fs.readFile(packedFile).then(function (src) {
       vm.runInNewContext(src, {
         Titanium: Titanium,
         Ti: Titanium,
@@ -72,7 +82,7 @@ describe("Bundling", function () {
         it: it,
         exports: _module.exports,
         module: _module
-      }, packed);
+      }, packedFile);
 
       _module.exports.should.eql(42);
     });

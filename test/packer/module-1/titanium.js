@@ -21,6 +21,29 @@ describe("Requiring", function () {
   it("should work outside the module too", function () {
     assert.equal(require('../../../package').name, 'titaniumifier');
   });
+
+  it("should throw on missing (native) dependencies", function () {
+    try {
+      // directly specified by the package.json
+      require('a.native.dep');
+    }
+    catch (e1) {
+      assert.equal(e1.code, 'MODULE_NOT_FOUND');
+      return;
+
+      /*try {
+        // TODO specified by a require module
+        require('another.native.dep');
+      }
+      catch (e2) {
+        assert.equal(e2.code, 'MODULE_NOT_FOUND');
+        return;
+      }*/
+    }
+
+    throw new Error("Shouldn’t have reached this point");
+  });
+
 });
 
 describe("Global context", function () {
