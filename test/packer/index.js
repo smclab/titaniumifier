@@ -47,7 +47,7 @@ describe("Building", function () {
 
 });
 
-describe("Resolution", function () {
+describe("Bundling", function () {
   var entry = path.resolve(__dirname, 'module-1');
   var packed = path.resolve(buildDir, 'module-1.js');
 
