@@ -39,7 +39,7 @@
     "ti-console": "^0.1.3",
     "ti-fs": "0.0.0",
     "titanium-os": "^0.1.1",
-    "titanium-resolve": "^0.3.2",
+    "titanium-resolve": "^0.4.0",
     "vm-titanium": "0.0.1",
     "when": "~2.7.1"
   },
