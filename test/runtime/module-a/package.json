@@ -10,6 +10,7 @@
     "module-a": "*"
   },
   "nativeDependencies": {
-    "i.dont.exist": "*"
+    "i.dont.exist": "*",
+    "module-c": "*"
   }
 }
