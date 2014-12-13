@@ -1,3 +1,5 @@
+/* global mocha:false */
+/* global Ti:false */
 
 require('ti-mocha');
 
@@ -17,7 +19,7 @@ describe('Require', function () {
 
 describe('Module calling', function () {
   var DeepThink;
-  var deepthink
+  var deepthink;
 
   it('should work', function () {
     DeepThink = require('module-a');

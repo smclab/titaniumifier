@@ -1,4 +1,4 @@
 lib/util/_prelude.js
 lib/util/prelude.js
-test/packer/build/**
+**/build/**
 **/node_modules/**
