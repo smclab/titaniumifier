@@ -1,5 +1,8 @@
 Titaniumifier
 =============
+
+<img align="right" width="128" height="128" src="https://cdn.mediacru.sh/7/725SJxukZKkC.svg">
+
 [![Build Status](https://img.shields.io/travis/smclab/titaniumifier.svg?style=flat)](https://travis-ci.org/smclab/titaniumifier) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/smclab/titaniumifier?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Build your **Titanium CommonJS Modules** as they should be: as **CommonJS packages**, allowing more than one file.
