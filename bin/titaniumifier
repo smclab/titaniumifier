@@ -1,0 +1,62 @@
+#!/usr/bin/env node
+
+var packer = require('../packer');
+var pkg = require('../package');
+
+var logSymbols = require('log-symbols');
+var mkdirp = require('mkdirp');
+var path = require('path');
+var program = require('commander');
+var updateNotifier = require('update-notifier');
+
+updateNotifier({ packageName: pkg.name, packageVersion: pkg.version }).notify();
+
+program
+  .version(pkg.version)
+  .option('-i, --in <directory>', 'The module to titaniumify', process.cwd())
+  .option('-o, --out <directory>', 'Where to write the module', process.cwd())
+  .option('-s, --simulate', 'Just test the build process')
+  .parse(process.argv);
+
+build(resolve(program.in), resolve(program.out), program.simulate);
+
+function build(entry, dist, simulate) {
+
+  console.log("");
+  console.log("  %s  working on '%s'", logSymbols.info, entry);
+
+  if (!simulate) {
+    console.log("  %s  will write in '%s'", logSymbols.info, dist);
+  }
+  else {
+    console.log("  %s  simulation mode", logSymbols.info);
+  }
+
+  console.log("");
+
+  packer.build({ entry: entry }).then(function (zip) {
+    if (simulate) return;
+
+    var newdir = mkdirp.sync(dist);
+
+    if (newdir) {
+      newdir = path.relative(process.cwd(), newdir);
+      console.log("  %s  dir '%s' wasn't there", logSymbols.warning, newdir);
+      console.log("");
+    }
+
+    return zip.writeModule(dist);
+  })
+  .done(function () {
+    if (simulate) console.log("  %s simulation works", logSymbols.success);
+    else console.log("  %s  zip correctly built", logSymbols.success);
+    console.log("");
+  }, function (err) {
+    console.log("  %s  errors!", logSymbols.error);
+    throw err;
+  });
+}
+
+function resolve(p) {
+  return path.resolve(process.cwd(), p || '.');
+}

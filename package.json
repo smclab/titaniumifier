@@ -15,7 +15,8 @@
   "main": "index.js",
   "directories": {
     "test": "./test",
-    "lib": "./lib"
+    "lib": "./lib",
+    "bin": "./bin"
   },
   "scripts": {
     "test": "grunt test",
@@ -31,8 +32,10 @@
   "dependencies": {
     "adm-zip": "~0.4.4",
     "browserify": "^7.0.0",
+    "commander": "^2.5.1",
     "guid": "0.0.12",
-    "mkdirp": "~0.3.5",
+    "log-symbols": "^1.0.1",
+    "mkdirp": "^0.3.5",
     "native-buffer-browserify": "~2.0.17",
     "rimraf": "^2.2.8",
     "semver": "~2.2.1",
@@ -40,6 +43,7 @@
     "ti-fs": "^0.1.1",
     "titanium-os": "^0.1.1",
     "titanium-resolve": "^0.4.0",
+    "update-notifier": "^0.2.2",
     "vm-titanium": "0.0.1",
     "when": "~2.7.1"
   },
