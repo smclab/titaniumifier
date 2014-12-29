@@ -17,6 +17,7 @@
     "describe": true,
     "it": true,
     "before": true,
-    "Titanium": true
+    "Titanium": true,
+    "Promise": true
   }
 }
