@@ -42,7 +42,7 @@ describe("Building", function () {
   });
 
   it("should create the right zip", function () {
-    assertIsFile(path.resolve(buildDir, 'module-1-commonjs-0.1.2.zip'));
+    return assertIsFile(path.resolve(buildDir, 'module-1-commonjs-0.1.2.zip'));
   });
 
 });
