@@ -3,20 +3,40 @@ Titaniumifier
 
 <img align="right" width="128" height="128" src="https://cdn.mediacru.sh/7/725SJxukZKkC.svg">
 
-[![Build Status](https://img.shields.io/travis/smclab/titaniumifier.svg?style=flat)](https://travis-ci.org/smclab/titaniumifier) [![Gitter](https://badges.gitter.im/Join Chat.svg)](https://gitter.im/smclab/titaniumifier?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+[![Build Status](https://img.shields.io/travis/smclab/titaniumifier.svg?style=flat-square)](https://travis-ci.org/smclab/titaniumifier) [![Gitter](https://img.shields.io/badge/GITTER-Join%20chat%20%E2%86%92-1DCE73.svg?style=flat-square)](https://gitter.im/smclab/titaniumifier?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Build your **Titanium CommonJS Modules** as they should be: as **CommonJS packages**, allowing more than one file.
 
 Developed around [substack][ss]’s [browserify][b], *titaniumifier* is a tool that can be used to build a zip file following Titanium SDK conventions with a `package.json` as its starting point.
 
-At the moment it doesn’t provide a command line tool, and must be used with a building tool. The [Grunt plugin][gt] is already here, and the Gulp one is on the way. ***Feel free to contribute one or ask for it.***
+[Documentation][wiki]
+---------------------
 
-### [Use it with Grunt][gt], [Example package][ti-superagent]
+The [Titaniumifier Wiki][wiki] is where you’ll find the most up to date documentation.
 
+Installation and usage
+----------------------
+
+If you’re serious with it you can use the [**Grunt plugin**][gt].
+
+If you just want to test it out you can use the `titaniumifier` CLI (good for **quick tests**):
+
+    # install it globally
+    $ [sudo] npm install --global titaniumifier
+
+    # move into a node package
+    $ cd path/to/project
+
+    # this will build dist/NAME-commonjs.VERSION.zip
+    $ titaniumifier --out dist
+
+[wiki]: https://github.com/smclab/titaniumifier/wiki
 [ss]: https://github.com/substack
 [b]: https://github.com/substack/node-browserify
 [gt]: https://github.com/smclab/grunt-titaniumifier
 [ti-superagent]: https://github.com/smclab/ti-superagent
+
+- - -
 
 
 What is it for?
@@ -74,12 +94,11 @@ TODO
   - `set/clearImmediate`,
   - `process.nextTick`;
 - Shim the following built-ins
-  - `fs`,
   - `http`,
   - `net` (with `Titanium.Network.TCPSocket`),
   - `stream` (and make `fs` work with it.)
 
-The shimming process could be a community effort into the development of `ti-fs`, `ti-net` etc. Contact us if you’re interested in working on it. In case don’t limit yourself to pure JS, give native development a chance.
+The shimming process could be a community effort into the development of `ti-http`, `ti-net` etc. Contact us if you’re interested in working on it. In case don’t limit yourself to pure JS, give native development a chance.
 
 
 Compatibility
@@ -126,9 +145,8 @@ If you feel like helping, we’ll accept pull requests with great joy.
 
 Here are a few ideas to help this project:
 
-- A stand-alone CLI so there’s no need for Grunt, Gulp etc
 - A Gulp plugin (here’s a [link to get you started][gp])
-- Even more unit-tests
+- Even more unit-tests (**yes please!**)
 
 [gp]: https://github.com/gulpjs/gulp/blob/master/docs/writing-a-plugin/README.md
 
