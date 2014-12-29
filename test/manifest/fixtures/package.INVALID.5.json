@@ -1,0 +1,8 @@
+{
+  "name": "example",
+  "version": "1.2.3",
+  "guid": "005f7d23-04d8-4d49-8c16-66694408e4b9",
+  "engines": {
+    "titaniumsdk": "3.4.1"
+  }
+}
