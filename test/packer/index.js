@@ -3,8 +3,6 @@ require('should');
 require('longjohn');
 
 var vm = require('vm');
-var when = require('when');
-var sequence = require('when/sequence');
 var path = require('path');
 var packer = require('../../packer');
 var fs = require('../../lib/util/fs');

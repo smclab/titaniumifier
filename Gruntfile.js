@@ -1,6 +1,6 @@
 'use strict';
 
-var when = require('when');
+var Promise = require('bluebird');
 var path = require('path');
 var packer = require('./packer');
 
@@ -79,7 +79,7 @@ module.exports = function (grunt) {
 
 		grunt.file.mkdir('test/runtime/build');
 
-		when.all([
+		Promise.all([
 			packer.build({
 				entry: path.resolve(__dirname, 'test/runtime/module-a')
 			}),
@@ -87,11 +87,8 @@ module.exports = function (grunt) {
 				entry: path.resolve(__dirname, 'test/runtime/module-c')
 			})
 		])
-		.spread(function (zipA, zipB) {
-			return when.all([
-				zipA.writeModule(path.resolve(__dirname, 'test/runtime/build')),
-				zipB.writeModule(path.resolve(__dirname, 'test/runtime/build'))
-			]);
+		.map(function (zip) {
+			return zip.writeModule(path.resolve(__dirname, 'test/runtime/build'));
 		})
 		.done(function () {
 			grunt.log.ok('Runtime module built');
