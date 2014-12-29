@@ -48,8 +48,6 @@
     "vm-titanium": "0.0.1"
   },
   "devDependencies": {
-    "colors": "~0.6.2",
-    "diff": "~1.0.8",
     "grunt": "~0.4.2",
     "grunt-contrib-clean": "^0.6.0",
     "grunt-contrib-jshint": "~0.8.0",

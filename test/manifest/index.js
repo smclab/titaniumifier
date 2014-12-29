@@ -1,7 +1,6 @@
 
 var manifest = require('../../manifest');
 
-var diff = require('diff');
 var should = require('should');
 
 var path = require('path');
