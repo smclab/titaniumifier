@@ -31,7 +31,7 @@
   ],
   "dependencies": {
     "adm-zip": "~0.4.4",
-    "browserify": "^7.0.0",
+    "browserify": "^8.0.2",
     "commander": "^2.5.1",
     "guid": "0.0.12",
     "log-symbols": "^1.0.1",
