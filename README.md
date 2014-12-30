@@ -51,35 +51,18 @@ You’ll want to give `titaniumifier` a try if you want to write
 - a wrapper for an existing package existing on `npm`.
 
 Once you’re done writing your package you’ll be able to publish it on `npm` for users to
+
 - use it with Node.js;
 - include it as a dependency of a *titaniumified* package.
-
-This is **not** for using arbitrary `npm` packages with Titanium. The way we build a module out of a package **could** be used to build a complete app too (and we tried, oh if we tried) but it poses few challenges. In particular debugging is very cumbersome. On the other side we could get transparent transpiling for free (you know, coffee-script, traceur, es6 etc.)
-
-Such a project was codenamed `npmifier` but not released. If interested please let us know in the [issues][i].
-
-Until we solve those challenges, have a look at [`tipi`][tp] which looks very promising. We are going to contribute to them few changes that will enable full compatibility with titaniumified packages.
-
-[i]: https://github.com/smclab/titaniumifier/issues?state=open
-[tp]: https://github.com/dawicorti/tipi
 
 
 What is it **not** for?
 -----------------------
 
-With `titaniumifier`, you will not be able to
+Even with `titaniumifier` you still wont be ablo to
 
-- use arbitrary Node.js packages in your app;
-- use or depend on ‘complex’ e ‘deeply’ node-ish packages like `socket.io`;
-- do something not already offered by the Titanium SDK APIs.
-
-### …but…
-
-- we worked (and still working) on providing a solution to use **every** Node.js package directly in your app;
-- we want to have shims that made the differences between Node.js’ environment and Titanium’s as small as possible;
-- we want to integrate [gitTio][gittio] to support native modules installation based on explicit dependency or automatic inference of dependency (for example a module for fully async filesystem operations.)
-
-[gittio]: http://gitt.io/cli
+- use or depend on ‘complex’ e ‘deeply node-ish’ packages like `socket.io` without work;
+- install Node.js packages in your app using `npm install ...`;
 
 
 TODO
