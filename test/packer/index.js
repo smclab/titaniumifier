@@ -68,6 +68,15 @@ describe("Bundling", function () {
     });
   });
 
+  it("shouldn’t leak our paths", function () {
+    return promise.then(function (packed) {
+      var source = packed.source.toString('utf8');
+      var root = path.resolve(__dirname, '..', '..');
+
+      source.should.not.containEql(root);
+    });
+  });
+
   it("should have resolved correctly the shadowed main", function () {
     var _module = { exports: {} };
 
