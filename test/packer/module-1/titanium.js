@@ -68,6 +68,46 @@ describe("Globals", function () {
   it('__filename', function () {
     assert.equal(typeof __filename, 'string');
   });
+
+  it('setTimeout', function (done) {
+    setTimeout(function (arg) {
+      assert.equal(arg, 'something');
+      done();
+    }, 10, 'something');
+  });
+
+  it('clearTimeout', function (done) {
+    var timeoutId = setTimeout(
+      done, 10, new Error("this timeout should have been cleared"));
+
+    setTimeout(done, 20, null);
+
+    clearTimeout(timeoutId);
+  });
+
+  it('setInterval', function (done) {
+    var count = 0;
+    var timeoutId = setTimeout(
+      done, 50, new Error("interval executed " + count + " times"));
+    var intervalId = setInterval(function (arg) {
+      assert.equal(arg, 'something');
+
+      if ((count++) > 1) {
+        clearTimeout(timeoutId);
+        clearInterval(intervalId);
+        done();
+      }
+    }, 10, 'something');
+  });
+
+  it('clearInterval', function (done) {
+    var intervalId = setInterval(
+      done, 10, new Error("this interval should have been cleared"));
+
+    setTimeout(done, 20, null);
+
+    clearInterval(intervalId);
+  });
 });
 
 // Exporting something

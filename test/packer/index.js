@@ -88,7 +88,11 @@ describe("Bundling", function () {
         describe: describe,
         it: it,
         exports: _module.exports,
-        module: _module
+        module: _module,
+        clearInterval: clearInterval,
+        clearTimeout: clearTimeout,
+        setInterval: setInterval,
+        setTimeout: setTimeout
       }, packedFile);
 
       _module.exports.should.eql(42);
