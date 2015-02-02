@@ -1,0 +1,13 @@
+{
+  "name": "module-2",
+  "titaniumManifest": {
+    "guid": "aa59d3bd-0972-cca1-4ef3-dd12538dc73f",
+    "moduleid": "fake-UPPER-CASE-name"
+  },
+  "private": true,
+  "version": "0.1.2",
+  "description": "Hallo",
+  "main": "index.js",
+  "author": "",
+  "license": "BSD-2-Clause"
+}

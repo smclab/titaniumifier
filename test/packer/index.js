@@ -43,6 +43,18 @@ describe("Building", function () {
     return assertIsFile(path.resolve(buildDir, 'module-1-commonjs-0.1.2.zip'));
   });
 
+  it("should write lower case zipfiles", function () {
+    return packer.build({
+      entry: path.resolve(__dirname, 'module-2')
+    })
+    .then(function (zip) {
+      return zip.writeModule(buildDir);
+    })
+    .then(function () {
+      return assertIsFile(path.resolve(buildDir, 'fake-upper-case-name-commonjs-0.1.2.zip'));
+    });
+  });
+
 });
 
 describe("Bundling", function () {
