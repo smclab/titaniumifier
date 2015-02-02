@@ -34,13 +34,20 @@ describe("Building", function () {
     return packer.build({
       entry: path.resolve(__dirname, 'module-1')
     })
-    .then(function (zip) {
+    .tap(function (zip) {
       return zip.writeModule(buildDir);
+    })
+    .tap(function (zip) {
+      return zip.writeBundle(buildDir);
     });
   });
 
   it("should create the right zip", function () {
     return assertIsFile(path.resolve(buildDir, 'module-1-commonjs-0.1.2.zip'));
+  });
+
+  it("should extract the bundle", function () {
+    return assertIsFile(path.resolve(buildDir, 'module-1.js'));
   });
 
   it("should write lower case zipfiles", function () {
@@ -51,7 +58,8 @@ describe("Building", function () {
       return zip.writeModule(buildDir);
     })
     .then(function () {
-      return assertIsFile(path.resolve(buildDir, 'fake-upper-case-name-commonjs-0.1.2.zip'));
+      return assertIsFile(path.resolve(
+        buildDir, 'fake-upper-case-name-commonjs-0.1.2.zip'));
     });
   });
 
