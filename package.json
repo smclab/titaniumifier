@@ -1,6 +1,6 @@
 {
   "name": "titaniumifier",
-  "version": "1.3.0",
+  "version": "1.3.1",
   "description": "Get a Titanium SDK CommonJS module out of a Node package!",
   "author": {
     "name": "Pier Paolo Ramon",
