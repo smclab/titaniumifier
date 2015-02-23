@@ -32,7 +32,7 @@
   "dependencies": {
     "adm-zip": "^0.4.4",
     "bluebird": "^2.5.1",
-    "browserify": "^8.0.2",
+    "browserify": "^9.0.3",
     "commander": "^2.5.1",
     "guid": "0.0.12",
     "log-symbols": "^1.0.1",
