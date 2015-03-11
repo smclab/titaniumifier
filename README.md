@@ -1,7 +1,7 @@
 Titaniumifier
 =============
 
-<img align="right" width="128" height="128" src="https://cdn.mediacru.sh/7/725SJxukZKkC.svg">
+<img align="right" width="128" height="128" src="https://dl.dropboxusercontent.com/s/6xrfo94wzv37uk4/logo.svg">
 
 [![Build Status](https://img.shields.io/travis/smclab/titaniumifier.svg?style=flat-square)](https://travis-ci.org/smclab/titaniumifier)
 [![npm](https://img.shields.io/npm/v/titaniumifier.svg?style=flat-square)](https://www.npmjs.com/package/titaniumifier) [![Gitter](https://img.shields.io/badge/GITTER-Join%20chat%20%E2%86%92-1DCE73.svg?style=flat-square)](https://gitter.im/smclab/titaniumifier?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
