@@ -1,0 +1,211 @@
+#!/usr/bin/env node
+
+var pkg = require('../package');
+
+var logSymbols = require('log-symbols');
+var mkdirp = require('mkdirp');
+var path = require('path');
+var fs = require('fs');
+var program = require('commander');
+var updateNotifier = require('update-notifier');
+
+updateNotifier({ packageName: pkg.name, packageVersion: pkg.version }).notify();
+
+var BETA = logSymbols.warning + "  BETA " + logSymbols.warning;
+
+var v = '1.0.0';
+
+program
+  .version(pkg.version)
+  .description(BETA + "  Use npm modules in your app!")
+  .option('--no-simulate', 'actually run the installation process')
+  .parse(process.argv);
+
+install(resolve(program.args[0]), program.simulate);
+
+function install(entry, simulate) {
+
+  console.log("");
+
+  console.log("  1.  Environment");
+  console.log("      -----------");
+
+  console.log("  %s   working on '%s'", logSymbols.info, entry);
+
+  var failures = 0;
+  var warnings = 0;
+
+  if (!is('file', path.resolve(entry, 'tiapp.xml'))) {
+    console.log("  %s   no tiapp.xml found in '%s'", logSymbols.error, entry);
+    failures++;
+  }
+
+  if (!is('directory', path.resolve(entry, 'Resources'))) {
+    console.log("  %s   no Resources dir found in '%s'", logSymbols.error, entry);
+    console.log("  %s   (this plugin does NOT work yet with Alloy)", logSymbols.error);
+    failures++;
+  }
+
+  if (!is('file', path.resolve(entry, 'package.json'))) {
+    console.log("  %s   no package.json found in '%s'", logSymbols.error, entry);
+    console.log("  %s   run `npm init` to get one!", logSymbols.error);
+    failures++;
+  }
+  else {
+    console.log("  %s   found a package.json (yeah!)", logSymbols.info);
+  }
+
+  if (failures && !simulate) {
+    console.log("");
+    process.exit();
+  }
+
+  console.log("");
+
+  console.log("  2.  Configuring the tiapp.xml");
+  console.log("      -------------------------");
+
+  var tiapp
+  var tiappFile = path.resolve(entry, 'tiapp.xml');
+
+  try {
+    tiapp = require('tiapp.xml').load(tiappFile);
+    console.log("  %s   tiapp.xml parsed correctly", logSymbols.info);
+  }
+  catch (e) {
+    tiapp = null;
+    console.log("  %s   couldn’t parse the tiapp.xml", logSymbols.error);
+    failures++;
+  }
+
+  if (failures && !simulate) {
+    console.log("");
+    process.exit();
+  }
+
+  if (tiapp) {
+
+    tiapp.getPlugins().forEach(function (plugin) {
+      var id = plugin.id;
+      var version = plugin.version;
+      if (id === 'ti.alloy') {
+        console.log("  %s   this plugin does NOT work yet with Alloy", logSymbols.error);
+        failures++;
+      }
+      else if (id === 'titaniumifier') {
+        console.log("  %s   v%s of '%s' already set, will overwrite", logSymbols.warning, version, id);
+        warnings++;
+      }
+    });
+
+    if (failures && !simulate) {
+      console.log("");
+      process.exit();
+    }
+
+    tiapp.setPlugin('titaniumifier', '1.0.0');
+
+    var plugins = tiapp.getPlugins();
+
+    if (simulate && plugins.length > 1) {
+      console.log("  %s   the plugins for this app will be:", logSymbols.info);
+      plugins.forEach(function (plugin, i) {
+        console.log("     – '%s' <%s>", plugin.id, (plugin.version || 'no specific version'));
+      });
+    }
+    else if (simulate) {
+      console.log("  %s   will setup 'titaniumifier' v%s in the tiapp.xml", logSymbols.info, v);
+    }
+
+    if (!simulate) {
+      try {
+        tiapp.write();
+
+        console.log("  %s   plugin 'titaniumifier' installed in tiapp.xml", logSymbols.success);
+      }
+      catch (err) {
+        console.error("  %s   issues while installing the plugin in tiapp.xml", logSymbols.error);
+        console.error(err);
+        process.exit();
+      }
+    }
+
+  }
+
+  console.log("");
+
+  console.log("  3.  Plugin files");
+  console.log("      ------------");
+
+  var hooksDir = path.resolve(entry, 'plugins', 'titaniumifier', v, 'hooks');
+  var hookFile = path.resolve(hooksDir, 'titaniumifier.js');
+  var sourceFile = path.resolve(__dirname, '..', 'plugin', v, 'hook.js');
+
+  if (is('directory', hooksDir)) {
+    console.log("  %s   directory '%s' already here", logSymbols.warning, path.relative(entry, hooksDir));
+    warnings++;
+  }
+  else if (!simulate) {
+    mkdirp.sync(hooksDir);
+    console.log("  %s   directory '%s' built", logSymbols.success, path.relative(entry, hooksDir));
+  }
+  else {
+    console.log("  %s   will create the directory '%s'", logSymbols.info, path.relative(entry, hooksDir));
+  }
+
+  if (is('file', hookFile)) {
+    console.log("  %s   hook '%s' already here", logSymbols.warning, path.relative(entry, hookFile));
+    warnings++;
+  }
+  else if (!simulate) {
+    fs.symlinkSync(sourceFile, hookFile);
+    console.log("  %s   hook '%s' (sym)linked", logSymbols.success, path.relative(entry, hookFile));
+  }
+  else {
+    console.log("  %s   will (sym)link the hook into '%s'", logSymbols.info, path.relative(entry, hookFile));
+  }
+
+  console.log("");
+  console.log("");
+
+  if (simulate) {
+    if (failures) {
+      console.log("  %s   %s failure(s)", logSymbols.error, failures);
+    }
+
+    if (warnings) {
+      console.log("  %s   %s warning(s)", logSymbols.warning, warnings);
+    }
+
+    if (!failures) {
+      console.log("  %s   Finished the simulation, now run it with `--no-simulate`!", logSymbols.success);
+    }
+  }
+  else {
+    console.log("  %s   Finished the installation, enjoy!", logSymbols.success);
+  }
+
+  console.log("");
+}
+
+function is(type, file) {
+  try {
+    var stats = fs.statSync(file);
+    return !stats ? false :
+      (type === 'file') ? stats.isFile() :
+      (type === 'directory') ? stats.isDirectory() :
+      false;
+  }
+  catch (e) {
+    if (e.code === 'ENOENT') {
+      return false;
+    }
+    else {
+      throw e;
+    }
+  }
+}
+
+function resolve(p) {
+  return path.resolve(process.cwd(), p || '.');
+}
