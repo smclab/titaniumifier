@@ -39,7 +39,7 @@
     "mkdirp": "^0.5.0",
     "rimraf": "^2.2.8",
     "semver": "^4.2.0",
-    "ti-console": "yuchi/ti-console",
+    "ti-console": "^0.1.4",
     "ti-fs": "^0.1.1",
     "tiapp.xml": "^0.2.2",
     "titanium-os": "^0.1.1",
