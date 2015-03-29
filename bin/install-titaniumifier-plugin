@@ -26,6 +26,11 @@ install(resolve(program.args[0]), program.simulate);
 function install(entry, simulate) {
 
   console.log("");
+  console.log("                         " + BETA);
+  console.log("         This tool is in beta! Use at your own risk!");
+  console.log("                         " + BETA);
+
+  console.log("");
 
   console.log("  1.  Environment");
   console.log("      -----------");
