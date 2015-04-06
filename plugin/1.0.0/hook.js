@@ -1,27 +1,14 @@
 
-exports.cliVersion = '^3.4.0';
+exports.cliVersion = '>= 3.4.0';
 
 exports.init = function babel$init(logger, config, cli, nodeappc) {
 
   var fs = require('fs');
-  //var titaniumResolve = require('titanium-resolve');
   var path = require('path');
-  //var mdeps = require('module-deps');
-  //var dsort = require('deps-sort');
-  //var insert = require('insert-module-globals');
-  //var pack = require('browser-pack');
   var touch = require("touch");
   var mkdirp = require('mkdirp');
 
-  //var builtins = require('../../lib/builtins');
-  //var globals = require('../../lib/globals');
-
-  //var PRELUDE_PATH = require.resolve('../../lib/util/_prelude');
-  //var PRELUDE_SRC = require('fs').readFileSync(PRELUDE_PATH, 'utf8');
-
   var packer = require('../../packer');
-
-  //var exporter = require('../lib/exporter');
 
   var has = Object.prototype.hasOwnProperty;
 
@@ -156,54 +143,7 @@ exports.init = function babel$init(logger, config, cli, nodeappc) {
 
       /*jsanalyze = require(ctx.titaniumSdkPath + '/node_modules/titanium-sdk/lib/jsanalyze');
       // use it this way:
-      // jsanalyze.analyzeJsFile(data.file, { minify: ctx.minifyJS });
-
-      ctx.swallowFrom = path.resolve(ctx.projectDir, 'build', 'titaniumifier', '.swallowFrom');
-      ctx.swallowTo = path.resolve(ctx.projectDir, 'build', 'titaniumifier', '.swallowTo');
-
-      mkdirp.sync(path.dirname(ctx.swallowFrom));
-      touch.sync(ctx.swallowFrom);
-
-      var md = mdeps({
-        transformKey: ['titaniumifier', 'transform'],
-        resolve: titaniumResolve,
-        ignoreMissing: true,
-        modules: builtins,
-        transform: [
-          function (file) {
-            return insert(file, {
-              vars: globals
-            });
-          }
-        ]
-      });
-
-      var ds = md.pipe(dsort());
-
-      ds.on('data', function (data) {
-        console.log(data);
-        resolved[ data.file ] = data.entry;
-      });
-
-      ds.on('error', function (err) {
-        console.log(err);
-        process.exit(1);
-      });
-
-      ds.on('end', function () {
-        console.dir(resolved);
-        console.dir({
-          tiSymbols: ctx.tiSymbols,
-          xcodeAppDir: ctx.xcodeAppDir,
-          buildAssetsDir: ctx.buildAssetsDir
-        });
-        console.dir()
-        callback(null);
-      });
-
-      md.write(path.resolve(ctx.projectDir, 'Resources', 'app.js'));
-
-      md.end();*/
+      // jsanalyze.analyzeJsFile(data.file, { minify: ctx.minifyJS });*/
     }
   });
 
@@ -218,6 +158,8 @@ exports.init = function babel$init(logger, config, cli, nodeappc) {
   function titaniumifier$copyResource$pre(data, callback) {
     var args = data.args;
 
+    var jsFilesToEncrypt = this.jsFilesToEncrypt;
+
     var from = args[0];
     var to = args[1];
 
@@ -229,15 +171,10 @@ exports.init = function babel$init(logger, config, cli, nodeappc) {
     var isFromResources = (fromResources.charAt(0) !== '.');
 
     if (has.call(resolvedIds, from)) {
-      logger.info(PREFIX + "Replacing %s", from.cyan)
+      logger.info(PREFIX + "Replacing %s", from.cyan);
 
       data.args[0] = resolvedIds[ from ];
     }
-    /*else if (from === ctx.titaniumifierMain) {
-      logger.debug(PREFIX + "Replacing %s", from.cyan);
-
-      data.args[0] = ctx.titaniumifierAppFilename;
-    }*/
     else if (!isFromResources || (from === ctx.bundleLocation)) {
       // do nothing if it’s the bundle or if it’s a module
     }
@@ -245,14 +182,14 @@ exports.init = function babel$init(logger, config, cli, nodeappc) {
       logger.debug(PREFIX + "Swallowing %s", from.cyan);
 
       data.args[0] = ctx.swallowFrom;
-      data.args[1] = ctx.swallowTo;
     }
     else if (ext === '.js') {
       logger.warn(PREFIX + "File %s is lost", from.cyan);
 
       data.args[0] = ctx.swallowFrom;
-      data.args[1] = ctx.swallowTo;
     }
+
+    this.jsFilesToEncrypt = jsFilesToEncrypt;
 
     callback(null);
   }
