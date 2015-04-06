@@ -58,6 +58,29 @@ function install(entry, simulate) {
   }
   else {
     console.log("  %s   found a package.json (yeah!)", logSymbols.info);
+
+    try {
+      var pkgSrc = fs.readFileSync(path.resolve(entry, 'package.json'), 'utf-8');
+      var pkg = JSON.parse(pkgSrc);
+
+      if (!pkg.main) {
+        console.log("  %s   package.json has no 'main' property", logSymbols.error);
+        failures++;
+      }
+      else if (!is('file', path.resolve(entry, pkg.main))) {
+        console.log("  %s   package.json’s 'main' property points to a missing file!", logSymbols.error);
+        console.log("  %s   (shouldn’t that be 'Resources/app.js'?)", logSymbols.error);
+        failures++;
+      }
+      else {
+        console.log("  %s   the package.json has a valid main property", logSymbols.info);
+      }
+    }
+    catch (e) {
+      console.log("  %s   couldn’t read the package.json!", logSymbols.error);
+      console.log(e);
+      failures++;
+    }
   }
 
   if (failures && !simulate) {
