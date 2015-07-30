@@ -44,7 +44,7 @@
     "tiapp.xml": "^0.2.2",
     "titanium-os": "^0.1.1",
     "titanium-resolve": "^0.4.0",
-    "touch": "0.0.3",
+    "touch": "^1.0.0",
     "update-notifier": "^0.2.2",
     "vm-titanium": "0.0.1"
   },
