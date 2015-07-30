@@ -9,7 +9,7 @@ var path = require('path');
 var program = require('commander');
 var updateNotifier = require('update-notifier');
 
-updateNotifier({ packageName: pkg.name, packageVersion: pkg.version }).notify();
+updateNotifier({ pkg: pkg }).notify();
 
 program
   .version(pkg.version)
