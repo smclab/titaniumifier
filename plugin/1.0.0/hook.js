@@ -139,6 +139,9 @@ exports.init = function babel$init(logger, config, cli, nodeappc) {
             callback(err);
           });
         });
+      })
+      .catch(function (err) {
+        callback(err);
       });
 
       /*jsanalyze = require(ctx.titaniumSdkPath + '/node_modules/titanium-sdk/lib/jsanalyze');
