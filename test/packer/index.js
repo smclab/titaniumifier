@@ -24,7 +24,7 @@ var Titanium = {
 
 before(function () {
   return fs.rimraf(buildDir).then(function () {
-    fs.mkdirp(buildDir);
+    return fs.mkdirp(buildDir);
   });
 });
 
