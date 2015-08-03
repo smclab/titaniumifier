@@ -6,6 +6,9 @@
     "moduleid": "module-1"
   },
   "main": "index.js",
+  "directories": {
+    "documentation": "docs"
+  },
   "titanium": {
     "./index.js": "./titanium.js"
   },

@@ -2,6 +2,8 @@
 require('should');
 require('longjohn');
 
+var AdmZip = require('adm-zip');
+
 var vm = require('vm');
 var path = require('path');
 var packer = require('../../packer');
@@ -61,6 +63,17 @@ describe("Building", function () {
       return assertIsFile(path.resolve(
         buildDir, 'fake-upper-case-name-commonjs-0.1.2.zip'));
     });
+  });
+
+  it("should bundle the collateral folders", function () {
+    var zip = new AdmZip(path.resolve(
+      buildDir, 'module-1-commonjs-0.1.2.zip'));
+
+    zip.getEntry('modules/commonjs/module-1/0.1.2/example/app.js')
+      .name.should.eql('app.js');
+
+    zip.getEntry('modules/commonjs/module-1/0.1.2/documentation/index.md')
+      .name.should.eql('index.md');
   });
 
 });
