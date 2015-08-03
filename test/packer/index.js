@@ -33,7 +33,7 @@ before(function () {
 describe("Building", function () {
 
   it("should work", function () {
-    this.timeout(5e3);
+    this.timeout(20e3);
 
     return packer.build({
       entry: path.resolve(__dirname, 'module-1')
