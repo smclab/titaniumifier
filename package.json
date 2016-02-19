@@ -30,7 +30,7 @@
     "analysis"
   ],
   "dependencies": {
-    "adm-zip": "0.4.6",
+    "adm-zip": "^0.4.7",
     "bluebird": "^2.5.1",
     "browserify": "^11.0.1",
     "commander": "^2.5.1",
